@@ -5,4 +5,8 @@ To check KANJI in Japanese text, and show what gread you should learn.  
 テキストの中の漢字をチェックして、何年生で習ったものかを分類して表示します。
 
 ##使い方
-html をブラウザで開きます。html の中に Javascript が入ってます。
+HTML with Javascript です。
+ここを見てください。
+https://koichii.github.io/kanji_checker/kanji.html
+
+必要なのは、docs\kanji.html だけで、その他は github pagesのためのファイルです
