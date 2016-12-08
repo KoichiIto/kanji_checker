@@ -55,9 +55,7 @@ $.mb_substr = function( str, begin, end ) {
   return ret;
 };
 
-// 漢字（Unicode的に言うCJK統合漢字の範囲）＋	𠮟
-//var kanji = new RegExp(/[\u3400-\u4dbf\u4e00-\u9fff\uf900-\ufaff𠮟]/);
-
+// 漢字
 function isKanji(c){ // c:判別したい文字
 //    var unicode = c.charCodeAt(0);
     var unicode = c.codePointAt(0); //サロゲート対応
