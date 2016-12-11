@@ -43,44 +43,28 @@
 		for (var k = 0; k <= 8; k++ ) {
 				kjtxt[k] = "";
 		}
-		var dtext = "";
+		var dtext = "";	// 結果の文字列
 		// 漢字チェック
-		var str = $("#src").val(); //.split("");	// 入力
-		var gakunen = $("#gakunen").val();
-		//var i = 0;
+		var str = $("#src").val();					// 元の文字列
+		var gakunen = $("#gakunen").val();	// 確認する学年
+
 		for (var c of str) {
-			var b = true;
-			var c2 = c;
-			//if (c.match(kanji)) {	// 漢字だったら
+			var over_flag = false; // 指定学年を超えるフラグ
 			if (isKanji(c)) {	// 漢字だったら
 				for (var k = 1; k <= 7; k++ ) { // 学年ごとのテーブルを見て
-					if ( kj[k].indexOf(c) != -1 ) { // 見つかったら
-						if ( kjtxt[k].indexOf(c) == -1 ) { // 既に追加されていなければ
-							kjtxt[k] += c; // 追加
-						}
-						c2 = "";
-						if (k <= gakunen) {
-							b = false;	// 指定学年以下だったら
-						}
+					if ( kj[k].indexOf(c) != -1 ) {
+						break; // 見つかったらループを抜ける
 					}
 				}
-				if ( kjtxt[8].indexOf(c) == -1 ) { // 既に追加されていなければ
-					kjtxt[8] += c2;	// 小学校以外の漢字
+				kjtxt[k] += ( kjtxt[k].indexOf(c) == -1 ) ? c : ""; // 既に追加されていなければ
+				if (k > gakunen) {
+					over_flag = true;	// 指定学年を超えていれば
 				}
 			} else {
-				if ( kjtxt[0].indexOf(c) == -1 ) { // 既に追加されていなければ
-					kjtxt[0] += c;	// 漢字以外
-				}
-				b = false;
+				kjtxt[0] += ( kjtxt[0].indexOf(c) == -1 ) ? c : ""; // 既に追加されていなければ
 			}
-			// 結果文字列の生成
-			if ( b ) {	// 難しい漢字だったら
-				dtext += "<b>"+ c +"</b>";
-			} else if ( c == "\n" ) { // 改行
-				dtext += "<br />";
-			} else {
-				dtext += c;
-			}
+			// 結果文字列の追加
+			dtext += ( c == "\n"  ) ? "<br />" : ( over_flag ) ? "<b>"+ c +"</b>" : c;
 		}
 
 		$("#dst").html(dtext);
@@ -111,11 +95,13 @@
 			background: #f0f0f0;
 		}
 	</style>
+
 </head>
 <body>
 
 <textarea id="src" rows="10" cols="40">
-ここに文字を入力
+ここに文字を入力して
+確認ボタンをクリック
 </textarea>
 <p>
 		<select name="gakunen" id="gakunen">
