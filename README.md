@@ -1,5 +1,5 @@
 # kanji_checker
-To check KANJI in Japanese text, and show what gread you should learn.  
+To check KANJI in Japanese text, and show what grade you should learn.  
 
 ## 漢字チェッカー
 テキストの中の漢字をチェックして、何年生で習ったものかを分類して表示します。
@@ -8,7 +8,7 @@ To check KANJI in Japanese text, and show what gread you should learn.  
 https://koichii.github.io/kanji_checker
 
 ##使い方
-HTML with Javascript です。
+HTML with JavaScript です。
 ここを見てください。  
 
 https://koichii.github.io/kanji_checker/kanji.html
